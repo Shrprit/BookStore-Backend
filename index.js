@@ -90,16 +90,16 @@ app.get('/getBooks',(req,res) => {
       }
   });
   }
+})
 
-  app.post('/deleted',(req,res)=> {
-    if (req.method === 'OPTIONS') {
-      res.set('Access-Control-Allow-Methods', 'POST');
-      res.set('Access-Control-Allow-Headers', 'Content-Type');
-      res.set('Access-Control-Max-Age', '3600');
-      res.status(204).send('');
-  } else {
-    db.collection('books').deleteOne({"_id":req.query["_id"]});
-    res.send("deleted");
-  }
-  })
+app.post('/deleteBook',(req,res)=> {
+  if (req.method === 'OPTIONS') {
+    res.set('Access-Control-Allow-Methods', 'POST');
+    res.set('Access-Control-Allow-Headers', 'Content-Type');
+    res.set('Access-Control-Max-Age', '3600');
+    res.status(204).send('');
+} else {
+  db.collection('books').deleteOne({"_id":req.query["_id"]});
+  res.send("deleted");
+}
 })
